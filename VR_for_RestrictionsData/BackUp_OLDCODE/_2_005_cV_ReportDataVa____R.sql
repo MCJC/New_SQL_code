@@ -231,113 +231,18 @@ ON
         E.[Variable]
      =  D.[Variable]
 
-
-
-
-
-
-/*********************************************************     statement to add variables coded in Excel (summer 2016)                          ***/
-/**************************************************************************************************************************************************/
-
-union all 
-select *
-  from [GRSHRcode].[dbo].[v05_ReportData_XLSX]
-
-
-/**************************************************************************************************************************************************/
-/*********************************************************     statement to add variables coded in Excel (summer 2016)                          ***/
-
-
-
-
-
-
 '
 
 /**************************************************************************************************************************************************/
 /*********************************************************     >>>>>> statements to display/execute code stored in the variable @CODEmain       ***/
 /**************************************************************************************************************************************************/
---	EXEC dbo.LongPrint @CODEmain                          /***        display the currently stored code (to be executed)                        ***/
-	EXEC              (@CODEmain)                         /***        execute the code that has been stored as text                             ***/
+	EXEC dbo.LongPrint @CODEmain                          /***        display the currently stored code (to be executed)                        ***/
+--	EXEC              (@CODEmain)                         /***        execute the code that has been stored as text                             ***/
 /**************************************************************************************************************************************************/
 /*********************************************************     <<<<<< statements to display/execute code stored in the variable @CODEmain       ***/
 /**************************************************************************************************************************************************/
 GO
 
-----select * FROM [GRSHRcode].[dbo].[v05_ReportData]
-
-
-/*
-add excel data
-
-select *
- into [GRSHRcode].[dbo].[v05_ReportData_XLSX]
-from
-(
- SELECT 
-       [Nation_fk]
-      ,[Ctry_EditorialName]
-      ,[Variable]                  = 'SHI_11_a_01'
-      ,[Change]                    = 0.00
-      ,[Value2015]                 = CASE WHEN [Nation_fk] IN  (13,117,125,127,204)
-                                          THEN 1.00
-                                          ELSE 0.00
-                                      END
-      ,[Value2014]                 = NULL
-      ,[DecodedValue_2015]         = CASE WHEN [Nation_fk] IN  (13,117,125,127,204)
-                                          THEN '1.00   - Yes'
-                                          ELSE '0.00   - No'
-                                      END
-      ,[DecodedValue_2014]         = ''
-      ,[Descr_2015]                = ''
-      ,[Descr_2014]                = ''
-  FROM [GRSHRcode].[dbo].[v05_ReportData]
- WHERE [Variable] = 'SHI_11_a'
---AND [Ctry_EditorialName] IN (
---'AUSTRIA',
---'Liechtenstein',
---'Maldives',
---'Malta',
---'Tajikistan')
-UNION ALL
- SELECT 
-       [Nation_fk]
-      ,[Ctry_EditorialName]
-      ,[Variable]                  = 'SHI_11_b_01'
-      ,[Change]                    = 0.00
-      ,[Value2015]                 = CASE WHEN [Nation_fk] IN  (100)
-                                          THEN 1.00
-                                          ELSE 0.00
-                                      END
-      ,[Value2014]                 = NULL
-      ,[DecodedValue_2015]         = CASE WHEN [Nation_fk] IN  (100)
-                                          THEN '1.00   - Yes'
-                                          ELSE '0.00   - No'
-                                      END
-      ,[DecodedValue_2014]         = ''
-      ,[Descr_2015]                = ''
-      ,[Descr_2014]                = ''
-  FROM [GRSHRcode].[dbo].[v05_ReportData]
- WHERE [Variable] = 'SHI_11_b'
---AND [Ctry_EditorialName] IN ('Israel')
-) mydata
-
-
-
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Answer_NOStd]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Answer_Std]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Data_Source]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Locality_Answer]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Nation_Answer]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Nation_Religion_Answer]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Question_NoStd]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[forum].[].[Pew_Question_Std]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[GRSHRcode].[dbo].[All_Questions]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[GRSHRcode].[dbo].[Countries]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[GRSHRcode].[dbo].[v05_ReportData]
-[GRSHRcode].[dbo].[v07_CodedNoAggregated]	[GRSHRcode].[dbo].[v06_CompletedCtry]
-
-*/
 
 
 
