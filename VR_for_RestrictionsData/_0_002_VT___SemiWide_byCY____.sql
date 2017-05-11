@@ -115,6 +115,16 @@ SELECT
                    OR   [QA_std]     LIKE 'SHI_04_[b-f]'                        /***                                       or   count variables SHI_04       ***/
                    OR   [QA_std]     LIKE 'SHI_05_[c-f]'                        /***                                       or   count variables SHI_05       ***/
             THEN ', ' + [QA_std] + ' = ISNULL(' + [QA_std] + ', 0)'             /***           as comma delimited code to include null values as ceros       ***/
+
+			               WHEN     [QA_std]     LIKE 'SHI_11'                  /*** SELECT /CASE                          when CURRENT error in SHI_11       ***/
+            THEN     ', SHI_11 = CASE '
+               + ' WHEN SHI_11 is not null THEN SHI_11 ' 
+               + ' WHEN SHI_11 is     null  AND SHI_11_b != 0 THEN 1.00 ' 
+               + ' WHEN SHI_11 is     null  AND SHI_11_a != 0 THEN 0.50 ' 
+               + ' WHEN SHI_11 is     null  AND SHI_11_a ' 
+               +                            ' + SHI_11_b = 0 THEN 0.00  END'
+
+
             ELSE ', ' + [QA_std]                                    END         /*** else comma delimited field for all other QA Std  / end of CASE section  ***/
     FROM                @TEMPTAB1                                               /*** temp table including all field (var) names as rows                      ***/
     ORDER BY CASE WHEN  [QA_std]     LIKE 'GRI_19_[b-f]'                        /*** CASE to sort different wordings...    when count variables GRI_19       ***/
