@@ -8,7 +8,9 @@ Print
 /***                                                                                                                                                         ***/
 /***                    -  Data of each row are by country-year (semi-wide)                                                                                  ***/
 /***                    -  As any wide/semi-wide set of data, these views and lookup tables only include numeric values for GR&SH R                          ***/
-/***                    -  ==> UNCOMENT  W  or  FD  initial section to run sql script (it will create view & lookup table)                                   ***/
+/***                    -  ==> DEFAULT:   FD  initial section to run sql script using final data        (it will create view & lookup table)                 ***/
+/***                    -  ==>    COMMENT FD  initial section                                                                                                ***/
+/***                           & UNCOMENT  W  initial section to run sql script using working data      (it will create view & lookup table)                 ***/
 /***                                                                                                                                                         ***/
 /***                                                                                                                                                         ***/
 /***                                               |                 W                 |                F D                |                                 ***/
@@ -27,44 +29,44 @@ Print
 /***************************************************************************************************************************************************************/
 /*******                                                  ***/                                                                                              /***/
 /*******                                                  ***/                                                                                              /***/
---	/***                                                  ***/     USE [forum_ResAnal]                                                                      /***/
---	/***   ********************   ****************        ***/     SET ANSI_NULLS ON                                                                        /***/
---	/***   ********************   *****************       ***/     SET QUOTED_IDENTIFIER ON                                                                 /***/
---	/***   ***                    ***            ***      ***/                                                                                              /***/
---	/***   ***                    ***             ***     ***/                                                                                              /***/
---	/***   ***                    ***              ***    ***/     declare     @VIEWNAME           nvarchar(max) = N'vr___02_'                              /***/
---	/***   ****************       ***              ***    ***/     declare     @SOURCE01           nvarchar(max) = N'vr___01_'                              /***/
---	/***   ****************       ***              ***    ***/                                                                                              /***/
---	/***   ***                    ***              ***    ***/                                                                                              /***/
---	/***   ***                    ***              ***    ***/                                                                                              /***/
---	/***   ***                    ***              ***    ***/                                                                                              /***/
---	/***   ***                    ***             ***     ***/     declare     @TEMPTAB1 TABLE (QA_std nvarchar(max))                                       /***/
---	/***   ***                    ***            ***      ***/     INSERT INTO @TEMPTAB1 SELECT DISTINCT [QA_std] FROM [vr___01_cDB_Long__NoAggregated]     /***/
---	/***   ***                    *****************       ***/                                                                                              /***/
---	/***   ***                    ****************        ***/     declare     @CUDBNAME           nvarchar(max) = N'forum_ResAnal'                         /***/
---	/***                                                  ***/     declare     @TABLNAME           nvarchar(max) = N'vr___02_cDB_Wide__by_Ctry&Year'        /***/
+--	/***                                                  ***/                                                                                              /***/
+--	/***   ********************   ****************        ***/                                                                                              /***/
+	/***   ********************   *****************       ***/     USE [forum_ResAnal]                                                                      /***/
+	/***   ***                    ***            ***      ***/     SET ANSI_NULLS ON                                                                        /***/
+	/***   ***                    ***             ***     ***/     SET QUOTED_IDENTIFIER ON                                                                 /***/
+	/***   ***                    ***              ***    ***/                                                                                              /***/
+	/***   ****************       ***              ***    ***/     declare     @VIEWNAME           nvarchar(max) = N'vr___02_'                              /***/
+	/***   ****************       ***              ***    ***/     declare     @SOURCE01           nvarchar(max) = N'vr___01_'                              /***/
+	/***   ***                    ***              ***    ***/                                                                                              /***/
+	/***   ***                    ***              ***    ***/     declare     @TEMPTAB1 TABLE (QA_std nvarchar(max))                                       /***/
+	/***   ***                    ***              ***    ***/     INSERT INTO @TEMPTAB1 SELECT DISTINCT [QA_std] FROM [vr___01_cDB_Long__NoAggregated]     /***/
+	/***   ***                    ***             ***     ***/                                                                                              /***/
+	/***   ***                    ***            ***      ***/     declare     @CUDBNAME           nvarchar(max) = N'forum_ResAnal'                         /***/
+	/***   ***                    *****************       ***/     declare     @TABLNAME           nvarchar(max) = N'vr___02_cDB_Wide__by_Ctry&Year'        /***/
+--	/***   ***                    ****************        ***/                                                                                              /***/
+--	/***                                                  ***/                                                                                              /***/
 /*******                                                  ***/                                                                                              /***/
 /*******                                                  ***/                                                                                              /***/
 /***************************************************************************************************************************************************************/
 /***************************************************************************************************************************************************************/
 /*******                                                  ***/                                                                                              /***/
 /*******                                                  ***/                                                                                              /***/
---	/***                                                  ***/     USE [GRSHRcode]                                                                          /***/
---	/***   *****                                 *****    ***/     SET ANSI_NULLS ON                                                                        /***/
---	/***   *****                                 *****    ***/     SET QUOTED_IDENTIFIER ON                                                                 /***/
---	/***     ***                                 ***      ***/                                                                                              /***/
---	/***      ***                               ***       ***/                                                                                              /***/
---	/***       ***                             ***        ***/     declare     @VIEWNAME           nvarchar(max) = N'vr___02w'                              /***/
---	/***        ***                           ***         ***/     declare     @SOURCE01           nvarchar(max) = N'vr___01w'                              /***/
---	/***         ***           ***           ***          ***/                                                                                              /***/
+--	/***                                                  ***/                                                                                              /***/
+--	/***   *****                                 *****    ***/                                                                                              /***/
+--	/***   *****                                 *****    ***/     USE [GRSHRcode]                                                                          /***/
+--	/***     ***                                 ***      ***/     SET ANSI_NULLS ON                                                                        /***/
+--	/***      ***                               ***       ***/     SET QUOTED_IDENTIFIER ON                                                                 /***/
+--	/***       ***                             ***        ***/                                                                                              /***/
+--	/***        ***                           ***         ***/     declare     @VIEWNAME           nvarchar(max) = N'vr___02w'                              /***/
+--	/***         ***           ***           ***          ***/     declare     @SOURCE01           nvarchar(max) = N'vr___01w'                              /***/
 --	/***          ***         *****         ***           ***/                                                                                              /***/
---	/***           ***       *** ***       ***            ***/                                                                                              /***/
---	/***            ***     ***   ***     ***             ***/                                                                                              /***/
---	/***             ***   ***     ***   ***              ***/     declare     @TEMPTAB1 TABLE (QA_std nvarchar(max))                                       /***/
---	/***              *** ***       *** ***               ***/     INSERT INTO @TEMPTAB1 SELECT DISTINCT [QA_std] FROM [vr___01_wDB_Long__NoAggregated]     /***/
---	/***              *******       *******               ***/                                                                                              /***/
---	/***               *****         *****                ***/     declare     @CUDBNAME           nvarchar(max) = N'GRSHRcode'                             /***/
---	/***                                                  ***/     declare     @TABLNAME           nvarchar(max) = N'vr___02_wDB_Wide__by_Ctry&Year'        /***/
+--	/***           ***       *** ***       ***            ***/     declare     @TEMPTAB1 TABLE (QA_std nvarchar(max))                                       /***/
+--	/***            ***     ***   ***     ***             ***/     INSERT INTO @TEMPTAB1 SELECT DISTINCT [QA_std] FROM [vr___01_wDB_Long__NoAggregated]     /***/
+--	/***             ***   ***     ***   ***              ***/                                                                                              /***/
+--	/***              *** ***       *** ***               ***/     declare     @CUDBNAME           nvarchar(max) = N'GRSHRcode'                             /***/
+--	/***              *******       *******               ***/     declare     @TABLNAME           nvarchar(max) = N'vr___02_wDB_Wide__by_Ctry&Year'        /***/
+--	/***               *****         *****                ***/                                                                                              /***/
+--	/***                                                  ***/                                                                                              /***/
 /*******                                                  ***/                                                                                              /***/
 /*******                                                  ***/                                                                                              /***/
 /***************************************************************************************************************************************************************/
